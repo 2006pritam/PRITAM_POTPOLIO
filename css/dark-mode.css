@@ -1,0 +1,17 @@
+/* dark-mode.css */
+
+/* Dark mode styles */
+body.dark-mode {
+  background-color: #121212;
+  color: #ffffff;
+}
+
+.navbar.dark-mode {
+  background-color: #1c1c1c;
+}
+
+.footer.dark-mode {
+  background-color: #1c1c1c;
+}
+
+/* Add dark mode styles for other elements as needed */
