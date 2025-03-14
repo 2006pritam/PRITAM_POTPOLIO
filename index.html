@@ -28,7 +28,19 @@
 	<div id="chatbot-container">
     <button id="chatbot-button">Chat</button>
     <iframe id="chatbot-iframe" src="https://v0-create-potoplio-bot.vercel.app/"></iframe>
-</div>  
+</div> 
+	  <!-- Video Embed Container -->
+<div id="video-container" style="position: fixed; bottom: 20px; right: 150px; z-index: 1000; width: 300px;">
+    <div style="position: relative; padding-bottom: 56.25%; height: 0;">
+        <div id="video-placeholder" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: url('images/pritam.png'); background-size: cover; background-position: center; cursor: pointer; border-radius: 10px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);">
+            <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 60px; height: 60px; background: rgba(0, 123, 255, 0.8); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                <div style="width: 0; height: 0; border-left: 20px solid white; border-top: 12px solid transparent; border-bottom: 12px solid transparent;"></div>
+            </div>
+        </div>
+        <iframe id="js_video_iframe" src="https://jumpshare.com/embed/ieY9A3sdGn2jyrNrlUYv" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: none; border-radius: 10px;"></iframe>
+    </div>
+</div>
+
 	  
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar ftco-navbar-light site-navbar-target" id="ftco-navbar">
 	    <div class="container">
