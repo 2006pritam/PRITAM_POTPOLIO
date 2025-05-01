@@ -475,39 +475,70 @@
         </div>
 
         <div class="row no-gutters block-9">
-            <div class="col-md-6 d-flex align-items-stretch">
-                <div class="img" style="background-image: url(images/pritam2.jpg); width: 100%; height: 100%; background-size: cover; background-position: center;"></div>
-            </div>
-            <div class="col-md-6 d-flex align-items-stretch">
-                <!-- HTML feedback form integrated with Formspree -->
-                <form action="https://formbold.com/s/917JA" method="POST" style="width: 100%; height: 100%; padding: 20px; background-color: #f8f9fa;">
-                    <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" class="form-control" id="name" name="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="your-number">Number</label>
-                        <input type="text" class="form-control" id="your-number" name="your-number" placeholder="Number">
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" class="form-control" id="email" name="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="question">Any Question?</label>
-                        <textarea class="form-control" id="question" name="question" rows="5" required></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Your Message</label>
-                        <textarea class="form-control" id="message" name="message" rows="7" placeholder="Your Message"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
+  <div class="col-md-6 d-flex align-items-stretch">
+    <div class="img" style="background-image: url(images/pritam2.jpg); width: 100%; height: 100%; background-size: cover; background-position: center;"></div>
+  </div>
+  <div class="col-md-6 d-flex align-items-stretch">
+    <!-- Feedback form: Submits to both Google Sheet and FormBold -->
+    <form id="feedbackForm" action="https://script.google.com/macros/s/AKfycbyMt2dAoBeXIPmviDbQ2vYuynkOXxXf7BMZyHTkusjVZ32ZAWIf7i5ACsH9XX2Pn3oPGQ/exec" method="POST" style="width: 100%; height: 100%; padding: 20px; background-color: #f8f9fa;">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" id="name" name="name" required>
+      </div>
+      <div class="form-group">
+        <label for="your-number">Number</label>
+        <input type="text" class="form-control" id="your-number" name="your-number" placeholder="Number">
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" class="form-control" id="email" name="email" required>
+      </div>
+      <div class="form-group">
+        <label for="question">Any Question?</label>
+        <textarea class="form-control" id="question" name="question" rows="5" required></textarea>
+      </div>
+      <div class="form-group">
+        <label for="message">Your Message</label>
+        <textarea class="form-control" id="message" name="message" rows="7" placeholder="Your Message"></textarea>
+      </div>
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- JavaScript to submit to both Google Sheet and FormBold -->
+<script>
+  document.getElementById("feedbackForm").addEventListener("submit", function (e) {
+    e.preventDefault(); // Prevent default form submission
+
+    const form = e.target;
+    const data = new FormData(form);
+
+    // Submit to Google Apps Script
+    fetch(form.action, {
+      method: "POST",
+      body: data,
+    })
+    .then(response => response.text())
+    .then(data => console.log("Saved to Google Sheet:", data))
+    .catch(error => console.error("Google Script Error:", error));
+
+    // Submit to FormBold
+    fetch("https://formbold.com/s/917JA", {
+      method: "POST",
+      body: data,
+    })
+    .then(response => response.text())
+    .then(data => console.log("Submitted to FormBold:", data))
+    .catch(error => console.error("FormBold Error:", error));
+
+    // Optionally, show a success message or reset the form
+    alert("Form submitted successfully!");
+    form.reset();
+  });
+</script>
 </section>
 		
 
